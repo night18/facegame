@@ -25,7 +25,7 @@ SECRET_KEY = 'tr*hlq-dcoq8*&9-e-j)0s5fxh^*f0&iu5yjm_18be@f1r_s_j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['3.90.181.149']
+ALLOWED_HOSTS = ['3.90.181.149', '0.0.0.0']
 
 
 # Application definition
@@ -37,9 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',            # add this
+    'rest_framework',         # add this 
+    'backend'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',    # add this
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,6 +52,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000/',
+    '3.90.181.149:3000'
+ )
 
 ROOT_URLCONF = 'facegame.urls'
 
